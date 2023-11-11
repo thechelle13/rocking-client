@@ -14,9 +14,11 @@ export const RockForm = ({ fetchRocks }) => {
 
     const fetchTypes = async () => {
         const response = await fetch("http://localhost:8000/types", {
+           
             headers: {
                 "Authorization": `Token ${JSON.parse(localStorage.getItem("rock_token")).token}`
             }
+           
         })
         const types = await response.json()
         changeTypes(types)
@@ -75,7 +77,7 @@ export const RockForm = ({ fetchRocks }) => {
                         <select id="type" className="form-control"
                             onChange={e => {
                                 const copy = { ...rock }
-                                copy.type_id = parseInt(e.target.value)
+                                copy.typeId = parseInt(e.target.value)
                                 updateRockProps(copy)
                             }}>
                             <option value={0}>- Select a type -</option>
